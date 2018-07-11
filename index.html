@@ -5,27 +5,73 @@
     <title></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <style>
+      body {
+        background-color: #242a31;
+      }
 
+      input[type="text"] {
+        color: #333 !important;
+        background-color: #f6f6f7 !important;
+        border: 0px;
+        border-radius: 0px;
+        padding: 8px 25px;
+      }
+
+      .main-wrapper {
+        max-width: 100%;
+        min-height: 100% !important;
+        max-height: 100% !important;
+        background-color: #fff;
+        display: flex;
+        margin: 5%;
+        padding: 25px !important;
+      }
+
+      .feedback {
+        color: #d3d6da;
+        font-size: 12px;
+        font-style: italic;
+        margin: 5px 0;
+      }
+
+      .circular {
+        max-width: 32px;
+        max-height: 32px;
+        border-radius: 50% 50%;
+      }
+
+      .message {
+        max-width: 100% !important;
+      }
+
+      .message p {
+        color: #838e9a;
+      }
     </style>
+    <link rel="stylesheet" href = "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
   </head>
   <body>
-    <div class = "container-fluid">
-      <div class = "row">
-        <div class = "col-lg-12">
-          <div id = "feedback"></div><!--end feedback-->
-          <div id = "messages"></div><!--end messages-->
-          <input type = "text" class = "form-control" id = "handler" placeholder = "Your handler"/>
-          <input type = "text" class = "form-control" id = "message" placeholder = "Your message here..."/>
-          <button id = "btnSend">Send</button>
-        </div><!--end col-lg-12-->
-      </div><!--end row-->
-    </div><!--end container-fluid-->
+    <div class = "main-wrapper">
+      <div class = "container-fluid">
+        <div class = "row">
+          <div class = "col-lg-12">
+            <div id = "messages"></div><!--end messages-->
+            <div id = "feedback"></div><!--end feedback-->
+            <div class = "form-inline">
+              <input type = "text" class = "form-control" id = "handler" placeholder = "Your handler"/>
+              <input type = "text" class = "form-control" id = "messageInputValue" placeholder = "Your message here..."/>
+              <button class = "btn" id = "btnSend"><i class = "fa fa-send"></i></button>
+            </div><!--end form-inline-->
+          </div><!--end col-lg-12-->
+        </div><!--end row-->
+      </div><!--end container-fluid-->
+    </div><!--end main-wrapper-->
     <script>
     var messages = document.getElementById('messages');
     var feedback = document.getElementById('feedback');
     var handler = document.getElementById('handler');
-    var message = document.getElementById('message');
+    var message = document.getElementById('messageInputValue');
     var btnSend = document.getElementById('btnSend');
 
     var socket = io.connect('http://localhost:4000');
@@ -46,11 +92,11 @@
     //Event Listener
     socket.on('chat', function(data) {
       feedback.innerHTML = '';
-      messages.innerHTML += '<p><strong>' + data.handler + '</strong>: ' + data.message + '</p>';
+      messages.innerHTML += '<div class = "media message"><img class="align-self-center mr-3 circular" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Generic placeholder image"><div class = "media-body"><strong class = "mt-0">' + data.handler + '</strong>: <p class = "mb-0">' + data.message + '</p></div></div><!--end media-->';
     });
 
     socket.on('typing', function(data) {
-      feedback.innerHTML = '<p><em>' + data + '</em> is typing...</p>';
+      feedback.innerHTML = '<p class = "feedback"><em>' + data + '</em> is typing...</p>';
     });
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
