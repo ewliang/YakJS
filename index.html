@@ -2,11 +2,14 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YakJS</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <style>
       body {
         background-color: #242a31;
+        max-height: 100% !important;
+        padding: 5%;
       }
 
       input[type="text"] {
@@ -17,14 +20,23 @@
         padding: 8px 25px;
       }
 
+      .main-logo {
+        max-width: 100px;
+        height: auto;
+      }
+
+      .site-name {
+        font-size: 24px;
+      }
+
       .main-wrapper {
         max-width: 100%;
         min-height: 100% !important;
         max-height: 100% !important;
         background-color: #fff;
         display: flex;
-        margin: 5%;
-        padding: 25px !important;
+        flex-direction: column;
+        padding: 25px;
       }
 
       .feedback {
@@ -40,12 +52,22 @@
         border-radius: 50% 50%;
       }
 
+      #messages {
+        flex: 9;
+        overflow-y: auto;
+      }
+
       .message {
         max-width: 100% !important;
+        padding: 10px;
       }
 
       .message p {
         color: #838e9a;
+      }
+
+      .input-wrapper {
+        flex: 1;
       }
     </style>
     <link rel="stylesheet" href = "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -55,12 +77,18 @@
     <div class = "main-wrapper">
       <div class = "container-fluid">
         <div class = "row">
+          <div class = "col-lg-12 text-center">
+            <img src = "yak.png" class = "img-fluid main-logo" alt = "YakJS Logo"><br/>
+            <h1 class = "site-name">YakJS</h1>
+          </div><!--end col-lg-12-->
+        </div><!--end row-->
+        <div class = "row">
           <div class = "col-lg-12">
             <div id = "messages"></div><!--end messages-->
             <div id = "feedback"></div><!--end feedback-->
-            <div class = "form-inline">
-              <input type = "text" class = "form-control" id = "handler" placeholder = "Your handler"/>
-              <input type = "text" class = "form-control" id = "messageInputValue" placeholder = "Your message here..."/>
+            <div class = "form-inline input-wrapper">
+              <input type = "text" class = "form-control" id = "handler" placeholder = "Your handler" required/>
+              <input type = "text" class = "form-control" id = "messageInputValue" placeholder = "Your message here..." required/>
               <button class = "btn" id = "btnSend"><i class = "fa fa-send"></i></button>
             </div><!--end form-inline-->
           </div><!--end col-lg-12-->
@@ -92,7 +120,7 @@
     //Event Listener
     socket.on('chat', function(data) {
       feedback.innerHTML = '';
-      messages.innerHTML += '<div class = "media message"><img class="align-self-center mr-3 circular" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Generic placeholder image"><div class = "media-body"><strong class = "mt-0">' + data.handler + '</strong>: <p class = "mb-0">' + data.message + '</p></div></div><!--end media-->';
+      messages.innerHTML += '<div class = "media message"><img class="align-self-center mr-3 circular" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Generic placeholder image"><div class = "media-body"><strong class = "mt-0">' + data.handler + '</strong>: <p class = "mb-0">' + data.message + '</p></div></div><!--end media--><hr>';
     });
 
     socket.on('typing', function(data) {
