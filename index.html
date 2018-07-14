@@ -4,96 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YakJS</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <style>
-      body {
-        background-color: #242a31;
-        max-height: 100% !important;
-        padding: 5%;
-      }
-
-      input[type="text"] {
-        color: #333 !important;
-        background-color: #f6f6f7 !important;
-        border: 0px;
-        border-radius: 0px;
-        padding: 8px 25px;
-      }
-
-      .main-logo {
-        max-width: 100px;
-        height: auto;
-      }
-
-      .site-name {
-        font-size: 24px;
-      }
-
-      .main-wrapper {
-        max-width: 100%;
-        min-height: 100% !important;
-        max-height: 100% !important;
-        background-color: #fff;
-        display: flex;
-        flex-direction: column;
-        padding: 25px;
-      }
-
-      .feedback {
-        color: #d3d6da;
-        font-size: 12px;
-        font-style: italic;
-        margin: 5px 0;
-      }
-
-      .circular {
-        max-width: 32px;
-        max-height: 32px;
-        border-radius: 50% 50%;
-      }
-
-      #messages {
-        flex: 9;
-        overflow-y: auto;
-      }
-
-      .message {
-        max-width: 100% !important;
-        padding: 10px;
-      }
-
-      .message p {
-        color: #838e9a;
-      }
-
-      .input-wrapper {
-        flex: 1;
-      }
-    </style>
+	  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700%7CRaleway:300,400,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href = "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel = "stylesheet" href = "style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
   </head>
   <body>
     <div class = "main-wrapper">
-      <div class = "container-fluid">
-        <div class = "row">
-          <div class = "col-lg-12 text-center">
-            <img src = "yak.png" class = "img-fluid main-logo" alt = "YakJS Logo"><br/>
-            <h1 class = "site-name">YakJS</h1>
-          </div><!--end col-lg-12-->
-        </div><!--end row-->
-        <div class = "row">
-          <div class = "col-lg-12">
-            <div id = "messages"></div><!--end messages-->
-            <div id = "feedback"></div><!--end feedback-->
-            <div class = "form-inline input-wrapper">
-              <input type = "text" class = "form-control" id = "handler" placeholder = "Your handler" required/>
-              <input type = "text" class = "form-control" id = "messageInputValue" placeholder = "Your message here..." required/>
-              <button class = "btn" id = "btnSend"><i class = "fa fa-send"></i></button>
-            </div><!--end form-inline-->
-          </div><!--end col-lg-12-->
-        </div><!--end row-->
-      </div><!--end container-fluid-->
+      <header class = "main-header">
+        <img src = "yak.png" class = "img-fluid main-logo" alt = "YakJS Logo"><br/>
+        <h1 class = "site-name">YakJS</h1>
+      </header>
+      <div id = "messages"></div><!--end messages-->
+      <div id = "feedback"></div><!--end feedback-->
+      <div class = "input-wrapper">
+        <input type = "text" class = "form-control" id = "handler" placeholder = "Your handler" required/>
+        <input type = "text" class = "form-control" id = "messageInputValue" placeholder = "Your message here..." required/>
+        <button class = "btn" id = "btnSend"><i class = "fa fa-send"></i></button>
+      </div><!--end form-inline-->
     </div><!--end main-wrapper-->
     <script>
     var messages = document.getElementById('messages');
@@ -120,15 +48,12 @@
     //Event Listener
     socket.on('chat', function(data) {
       feedback.innerHTML = '';
-      messages.innerHTML += '<div class = "media message"><img class="align-self-center mr-3 circular" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Generic placeholder image"><div class = "media-body"><strong class = "mt-0">' + data.handler + '</strong>: <p class = "mb-0">' + data.message + '</p></div></div><!--end media--><hr>';
+      messages.innerHTML += '<div class = "media message"><img class="circular" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Generic placeholder image"><div class = "media-body"><div class = "name">' + data.handler + '</div><p>' + data.message + '</p></div></div><!--end media-->';
     });
 
     socket.on('typing', function(data) {
       feedback.innerHTML = '<p class = "feedback"><em>' + data + '</em> is typing...</p>';
     });
     </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   </body>
 </html>

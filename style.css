@@ -1,0 +1,162 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Custom */
+
+
+
+/* HTML Elements */
+body {
+  background-color: #242a31;
+	padding: 5%;
+}
+
+input[type="text"] {
+  color: #333 !important;
+  background-color: #f6f6f7 !important;
+  border: 0px;
+  border-radius: 0px;
+  padding: 8px 25px;
+}
+
+p {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+}
+
+/* Styles */
+.main-header {
+	font-family: 'Open Sans', sans-serif;
+	max-height: 100px;
+  flex: 1;
+}
+
+.main-logo {
+  max-width: 100px;
+  height: auto;
+}
+
+.site-name {
+  font-size: 24px;
+}
+
+.main-wrapper {
+  max-width: 100%;
+	height: 100vh;
+  max-height: 100vh !important;
+  background-color: #fff;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+
+	border: 1px solid red;
+}
+
+.feedback {
+  color: #d3d6da;
+  font-size: 12px;
+  font-style: italic;
+	max-height: auto;
+  margin: 5px 0;
+  flex: 1;
+}
+
+.circular {
+  max-width: 32px;
+  max-height: 32px;
+  border-radius: 50% 50%;
+}
+
+#messages {
+  overflow: auto;
+  flex: 1;
+}
+
+.message {
+	font-family: 'Open Sans', sans-serif;
+  max-width: 100% !important;
+  padding: 10px;
+	display: flex;
+	flex-direction: row;
+}
+
+.message .name {
+	font-weight: 600;
+}
+
+.message img {
+	margin: 0 16px;
+}
+
+.message p {
+  color: #838e9a;
+	overflow-wrap: break-word;
+	line-height: 1.4;
+}
+
+#feedback {
+	max-height: 50px;
+  flex: 1;
+}
+
+.input-wrapper {
+	max-height: 50px;
+	display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex:1;
+}
+
+#handler {
+	flex-grow: 1;
+}
+
+#messageInputValue {
+	flex-grow: 10;
+}
+
+#btnSend {
+	flex-grow: 1;
+}
