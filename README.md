@@ -21,3 +21,6 @@ These challenges might or might not end up on the ToDo list for this project.
 - Add Image Support In Messages
 - Add Autoplay Video Preview In Messages
 - Add Screen Share
+
+## License
+Please refer to LICENSE file.
