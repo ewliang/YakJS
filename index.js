@@ -1,3 +1,10 @@
+/*
+  YakJS
+  Created by Eric Liang
+  Source: https://github.com/ewliang/YakJS
+  Author Website: https://www.eric-liang.com
+*/
+
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
@@ -5,26 +12,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const socket = require('socket.io');
 const app     = express();
-const databaseConfig = require('./config/db');
 
 const path = require('path');
-
-//Database Connection
-/*
-mongoose.Promise = require('bluebird');
-mongoose.connect(databaseConfig.database.connectionURL);
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'There is an error while attempting to connect to the database.'));
-db.once('open', function() {
-  console.log('Successfully connected to the database ' + db.name + '.');
-});
-*/
-
-//Setup Socket
-
-
-//Routes Files
-const index = require('./routes/index');
 
 app.use(cors());
 app.disable('x-powered-by');
@@ -33,9 +22,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(__dirname + '/'));
-
-//Routes Paths
-app.use('/', index);
 
 // error handler
 app.use(function(err, req, res, next) {
