@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+  <!--
+    Yak.JS Created by Eric Liang
+    v1.0
+    index.html acts as a client using the yakJS backend API demo.
+  -->
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,6 +44,13 @@
         handler: handler.value
       });
       message.value = '';
+    });
+
+    //Send Message on "Enter" Key Press
+    message.addEventListener('keydown', function(event) {
+      if(event.keyCode == 13) {
+        btnSend.click();
+      }
     });
 
     message.addEventListener('keypress', function() {
